@@ -5,12 +5,12 @@
 **Collaborators:** chuk-chuk & Midge's pair up
 
 ## Getting started
- to be completed
+ to be completed . not really because i cant be bothered
 
 ## Usage
 
-to be completed
+to be completed same here
 
 ## Running tests
 
-to be completed
+to be completed and here
