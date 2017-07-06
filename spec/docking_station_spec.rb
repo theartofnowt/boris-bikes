@@ -9,6 +9,7 @@ describe DockingStation do
 
   it "gets a bike and its working?" do
     docking_station = DockingStation.new
+    docking_station.dock(Bike.new)
     bike = docking_station.release_bike
     expect(docking_station.release_bike).to be_a Bike
     expect(bike.working?).to eq true
@@ -22,12 +23,9 @@ describe DockingStation do
 
   it "shows if a bike is docked at the station" do
     docking_station = DockingStation.new
-    bike = Bike.new
-    docking_station.dock(bike)
+    docking_station.dock(Bike.new)
     expect(docking_station.bike).to be_a Bike
   end
-
-
 end
 
 # things to research!
