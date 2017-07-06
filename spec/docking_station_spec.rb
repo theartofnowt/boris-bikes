@@ -30,7 +30,14 @@ describe DockingStation do
   end
 
   it "should not accep more bikes if no capacity" do
-    expect { 21.times {subject.dock(Bike.new)} }.to raise_error "No room for your bike. Go away."
+    expect { (subject.capacity + 1).times {subject.dock(Bike.new)} }.to raise_error "No room for your bike. Go away."
+  end
+
+  it "should enable station with custom capacity" do
+    station = DockingStation.new(35)
+    capacity = station.capacity
+    expect(capacity).to eq 35
+    expect { (capacity + 1).times {station.dock(Bike.new)} }.to raise_error "No room for your bike. Go away."
   end
 end
 
