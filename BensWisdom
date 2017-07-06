@@ -10,3 +10,8 @@ bike = bike.new
 docking_station.dock(bike)
 ^                ^    ^
 Object         method argument
+
+raise used by ruby to "raise something" eg raise_error
+
+{} to test a block of code
+() value

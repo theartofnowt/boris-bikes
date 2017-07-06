@@ -2,8 +2,7 @@ require 'docking_station'
 
 describe DockingStation do
    it "respond to release bike" do
-     docking_station = DockingStation.new #
-     expect(docking_station).to respond_to(:release_bike)
+     expect(subject).to respond_to(:release_bike)
 
   end
 
@@ -25,6 +24,11 @@ describe DockingStation do
     docking_station = DockingStation.new
     docking_station.dock(Bike.new)
     expect(docking_station.bike).to be_a Bike
+  end
+
+  it "show if there are no more bikes in docking station means no more bikes" do
+    expect{subject.release_bike}.to raise_error "Go away. No bike for you."
+
   end
 end
 
