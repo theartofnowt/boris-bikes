@@ -1,0 +1,12 @@
+bike = station.release_bike <---- doesn't work because release_bike doesn't create a new bike object yet
+bike = nil  <--------- what is really happening on the line above
+bike.working? <-------- Doesn't work because bike = nil
+nil.working? <--------- What you are actually doing on the line above
+be_a <------- checks if an object is an instance of another objectike
+
+docking_station = DockingStation.new
+bike = bike.new
+
+docking_station.dock(bike)
+^                ^    ^
+Object         method argument
