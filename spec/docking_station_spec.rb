@@ -7,23 +7,22 @@ describe DockingStation do
   end
 
   it "gets a bike and its working?" do
-    docking_station = DockingStation.new
-    docking_station.dock(Bike.new)
-    bike = docking_station.release_bike
-    expect(docking_station.release_bike).to be_a Bike
-    expect(bike.working?).to eq true
+    subject.dock(Bike.new)
+    bike = subject.release_bike
+    expect(bike).to be_a Bike
+    expect(bike).to be_working
   end
 
   it "Docks stores an instance of a bike object when one is passed to it" do
-    docking_station = DockingStation.new
     bike = Bike.new
-    expect(docking_station.dock(bike)).to eq bike
+    subject.dock(bike)
+    expect(subject.release_bike).to eq bike
   end
 
   it "shows if a bike is docked at the station" do
-    docking_station = DockingStation.new
-    docking_station.dock(Bike.new)
-    expect(docking_station.bike).to be_a Bike
+    bike = Bike.new
+    subject.dock(bike)
+    expect(subject.bikes).to include bike
   end
 
   it "show if there are no more bikes in docking station means no more bikes" do
@@ -31,8 +30,7 @@ describe DockingStation do
   end
 
   it "should not accep more bikes if no capacity" do
-    subject.dock(Bike.new)
-    expect { subject.dock(Bike.new) }.to raise_error "No room for your bike. Go away."
+    expect { 21.times {subject.dock(Bike.new)} }.to raise_error "No room for your bike. Go away."
   end
 end
 

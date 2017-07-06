@@ -15,3 +15,6 @@ raise used by ruby to "raise something" eg raise_error
 
 {} to test a block of code
 () value
+
+Guard condition is; {do something} if ..
+or { do something } unless..
