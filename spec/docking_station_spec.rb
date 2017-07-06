@@ -39,6 +39,15 @@ describe DockingStation do
     expect(capacity).to eq 35
     expect { (capacity + 1).times {station.dock(Bike.new)} }.to raise_error "No room for your bike. Go away."
   end
+
+  it "should not release broken bike, so no angry customers complain!" do
+    subject.dock(Bike.new)
+    bike = Bike.new
+    bike.report_broken
+    subject.dock(bike)
+    expect(subject.release_bike.working?).to be true
+  end
+
 end
 
 # things to research!
