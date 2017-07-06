@@ -1,27 +1,28 @@
 require 'docking_station'
 
 describe DockingStation do
-   it "respond to release bike" do
-     expect(subject).to respond_to(:release_bike)
+  let(:bike)  { double :bike }
 
+  it "respond to release bike" do
+     expect(subject).to respond_to(:release_bike)
   end
 
   it "gets a bike and its working?" do
-    subject.dock(double(:bike))
-    bike = subject.release_bike
-    expect(bike).to be_working
+    subject.dock( double(:bike, working?: true))
+    released_bike = subject.release_bike
+    expect(released_bike).to be_working
   end
 
   it "Docks stores an instance of a bike object when one is passed to it" do
-    bike = Bike.new
-    subject.dock(bike)
-    expect(subject.release_bike).to eq bike
+    bike_to_dock = double(:bike, working?: true)
+    subject.dock(bike_to_dock)
+    expect(subject.release_bike).to eq bike_to_dock
   end
 
   it "shows if a bike is docked at the station" do
-    bike = Bike.new
-    subject.dock(bike)
-    expect(subject.bikes).to include bike
+    bike_to_dock = double(:bike, working?: true)
+    subject.dock(bike_to_dock)
+    expect(subject.bikes).to include bike_to_dock
   end
 
   it "show if there are no more bikes in docking station means no more bikes" do
@@ -29,24 +30,21 @@ describe DockingStation do
   end
 
   it "should not accep more bikes if no capacity" do
-    expect { (subject.capacity + 1).times {subject.dock(Bike.new)} }.to raise_error "No room for your bike. Go away."
+    expect { (subject.capacity + 1).times {subject.dock(double(:bike, working?: true))} }.to raise_error "No room for your bike. Go away."
   end
 
   it "should enable station with custom capacity" do
     station = DockingStation.new(35)
     capacity = station.capacity
     expect(capacity).to eq 35
-    expect { (capacity + 1).times {station.dock(Bike.new)} }.to raise_error "No room for your bike. Go away."
+    expect { (capacity + 1).times {station.dock(double(:bike, working?: true))} }.to raise_error "No room for your bike. Go away."
   end
 
   it "should not release broken bike, so no angry customers complain!" do
-    subject.dock(Bike.new)
-    bike = Bike.new
-    bike.report_broken
-    subject.dock(bike)
+    subject.dock(double(:bike, working?: true))
+    subject.dock(double(:bike, working?: false))
     expect(subject.release_bike.working?).to be true
   end
-
 end
 
 # things to research!
