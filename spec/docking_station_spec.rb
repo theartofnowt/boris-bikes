@@ -28,7 +28,11 @@ describe DockingStation do
 
   it "show if there are no more bikes in docking station means no more bikes" do
     expect{subject.release_bike}.to raise_error "Go away. No bike for you."
+  end
 
+  it "should not accep more bikes if no capacity" do
+    subject.dock(Bike.new)
+    expect { subject.dock(Bike.new) }.to raise_error "No room for your bike. Go away."
   end
 end
 
