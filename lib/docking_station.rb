@@ -1,8 +1,9 @@
 class DockingStation
   attr_reader 'bikes'
+  DEFAULT_CAPACITY = 20
+
   def initialize
     @bikes =[]
-    @capacity = 20
   end
   def release_bike
     raise "Go away. No bike for you." if empty?
@@ -15,7 +16,7 @@ class DockingStation
 
   private
   def full?
-    @bikes.count >= @capacity ? true : false
+    @bikes.count >= DEFAULT_CAPACITY ? true : false
   end
   def empty?
     @bikes.empty? ? true : false

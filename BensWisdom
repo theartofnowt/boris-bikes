@@ -18,3 +18,8 @@ raise used by ruby to "raise something" eg raise_error
 
 Guard condition is; {do something} if ..
 or { do something } unless..
+
+Ternary operator = research this!
+private and public methods = research this!
+Single Responsibliy = one method that only does one thing.
+constants cant be assigned within a method. 
