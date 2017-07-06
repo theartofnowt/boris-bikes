@@ -1,4 +1,4 @@
-class Biker
+class Bike
   def initialize
     @working = true
   end

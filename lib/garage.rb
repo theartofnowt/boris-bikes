@@ -1,0 +1,2 @@
+class Garage < DockingStation
+end
